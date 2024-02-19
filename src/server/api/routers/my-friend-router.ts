@@ -59,6 +59,8 @@ export const myFriendRouter = router({
             'friends.fullName',
             'friends.phoneNumber',
             'totalFriendCount',
+            // Sử dụng câu lệnh con để tính số lượng bạn chung
+            conn.fn.count('friendUserId').as('mutualFriendCount')
           ])
           .executeTakeFirstOrThrow(() => new TRPCError({ code: 'NOT_FOUND' }))
           .then(
